@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[58]:
+# In[92]:
 
 
 import csv
 import matplotlib.pyplot as plt
 
 
-# In[59]:
+# In[93]:
 
 
 '''
@@ -26,37 +26,37 @@ data : [] = list()
 '''
 
 
-# In[60]:
+# In[94]:
 
 
 data = csv.reader(open('../data/seoul.csv','rt', encoding='utf-8'))
 
 
-# In[61]:
+# In[95]:
 
 
 next(data)
 
 
-# In[62]:
+# In[96]:
 
 
 ls = list(data)
 
 
-# In[63]:
+# In[97]:
 
 
 #print([i for i in ls])
 
 
-# In[64]:
+# In[98]:
 
 
 #print([i[-1] for i in ls]) #show_highest_temperature
 
 
-# In[65]:
+# In[99]:
 
 
 highest_temperatures = []
@@ -64,21 +64,21 @@ highest_temperatures = []
 print(f'총 {len(highest_temperatures)}')
 
 
-# In[66]:
+# In[100]:
 
 
 plt.figure(figsize=(10,2))
 plt.plot(highest_temperatures,'r')
 
 
-# In[67]:
+# In[101]:
 
 
 high = [] # highest_temperature
 low = [] # lowest_temperature
 
 
-# In[68]:
+# In[102]:
 
 
 for i in ls:
@@ -89,7 +89,7 @@ for i in ls:
                 low.append(float(i[-2]))
 
 
-# In[69]:
+# In[109]:
 
 
 plt.rcParams['axes.unicode_minus'] = False
@@ -98,4 +98,50 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.plot(high,'lightpink', label = 'high')
 plt.plot(low, 'skyblue', label = 'low')
 plt.legend()
+
+
+# In[110]:
+
+
+import random
+
+
+# In[111]:
+
+
+arr = []
+[arr.append(random.randint(1,1000))for i in range(13)]
+plt.boxplot(arr)
+plt.show()    
+
+
+# In[112]:
+
+
+month=[]
+[month.append([]) for i in range(12)]
+[month[int(i[0].split('-')[1]) - 1].append(float(i[-1])) for i in ls if i[-1] !='']
+plt.boxplot(month)
+plt.show()
+
+
+# In[108]:
+
+
+day = []
+[day.append([]) for i in range(31)]
+[day[int(i[0].split('-')[2]) - 1].append(float(i[-1]))
+    for i in ls
+        if i[-1] != ''
+            if i [0].split('-')[1]=='08']
+plt.style.use('ggplot')
+plt.figure(figsize=(10,5), dpi=300)
+plt.boxplot(day, showfliers=False)
+plt.show()
+
+
+# In[ ]:
+
+
+
 
